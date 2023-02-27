@@ -25,7 +25,9 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if @project.update(project_params)
+    @project.attributes = project_params
+    @project.paper_trail_event = "#{current_user.email} updated #{project_params.keys.join(', ')}"
+    if @project.save
       flash[:notice] = 'Project Updated'
       redirect_to @project
     else
