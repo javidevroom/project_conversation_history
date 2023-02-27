@@ -1,3 +1,18 @@
-<div>
-History data
+<div class="mt-8 px-4">
+  <% if @project.versions.any? %>
+    <ul class="mt-4 space-y-4">
+      <% @project.versions.each do |version| %>
+        <li class="border border-gray-300 rounded-md p-4">
+          <div class="flex items-center justify-between">
+            <time datetime="<%= version.created_at.to_datetime.rfc3339 %>" class="text-gray-500 text-sm"><%= version.created_at.strftime("%b %d, %Y") %></time>
+          </div>
+          <div class="mt-2 text-gray-700 text-sm">
+            <%= version.event %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="mt-4 text-gray-500">No history yet.</p>
+  <% end %>
 </div>
