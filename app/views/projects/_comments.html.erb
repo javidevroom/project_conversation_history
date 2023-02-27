@@ -1,7 +1,7 @@
 <div class="mt-8 px-4">
   <% if @project.comments.any? %>
     <ul class="mt-4 space-y-4">
-      <% @project.comments.each do |comment| %>
+      <% comments.each do |comment| %>
         <li class="border border-gray-300 rounded-md p-4">
           <div class="flex items-center justify-between">
             <h3 class="text-base font-medium text-gray-900"><%= comment.user.email %></h3>

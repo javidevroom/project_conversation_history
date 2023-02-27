@@ -1,7 +1,7 @@
 <div class="mt-8 px-4">
   <% if @project.versions.any? %>
     <ul class="mt-4 space-y-4">
-      <% @project.versions.each do |version| %>
+      <% versions.each do |version| %>
         <li class="border border-gray-300 rounded-md p-4">
           <div class="flex items-center justify-between">
             <time datetime="<%= version.created_at.to_datetime.rfc3339 %>" class="text-gray-500 text-sm"><%= version.created_at.strftime("%b %d, %Y") %></time>
