@@ -1,4 +1,12 @@
-<div>
-  <h1 class="font-bold text-4xl">Projects#index</h1>
-  <p>Find me in app/views/projects/index.html.erb</p>
+<div class="container mx-auto">
+  <h1 class="text-3xl font-bold mb-8">All Projects</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <% @projects.each do |project| %>
+      <div class="bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-xl font-bold mb-4"><%= project.name %></h2>
+        <p class="mb-4"><%= project.description %></p>
+        <a href="<%= project_path(project) %>" class="block text-blue-500 font-bold hover:text-blue-700">View Project</a>
+      </div>
+    <% end %>
+  </div>
 </div>
