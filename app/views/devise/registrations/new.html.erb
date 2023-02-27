@@ -1,0 +1,23 @@
+<div class="flex justify-center items-center h-screen">
+  <div class="max-w-md w-full mx-auto px-6">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Sign up</h1>
+      <p class="text-gray-700 mb-6">Create your account to get started</p>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.text_field :email, class: "w-full border-2 border-gray-400 px-4 py-2 mb-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" , placeholder: "Email" %>
+
+      <%= f.password_field :password, class: "w-full border-2 border-gray-400 px-4 py-2 mb-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder: "Password" %>
+
+      <%= f.password_field :password_confirmation, class: "w-full border-2 border-gray-400 px-4 py-2 mb-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder: "Confirm Password" %>
+
+      <div class="flex items-center justify-between mb-4">
+        <%= f.submit "Sign up", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        <%= render "devise/shared/links" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/error_messages", object: resource %>
+  </div>
+</div>
