@@ -1,7 +1,7 @@
 <%= form_with model: @project, class: 'p-10 max-w-[500px] mx-auto' do |f| %>
   <div class="mb-4">
     <%= f.label :name, class: "block text-gray-700 font-bold mb-2" %>
-    <%= f.text_field :name, class: "form-input mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50", placeholder: "Enter project name" %>
+    <%= f.text_field :name, required: true, class: "form-input mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50", placeholder: "Enter project name" %>
   </div>
 
   <div class="mb-4">

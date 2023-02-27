@@ -16,6 +16,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.new(project_params)
+    @project.paper_trail_event = "#{current_user.email} created project"
+
     if @project.save
       flash[:notice] = 'Project Created'
       redirect_to @project
@@ -28,6 +30,7 @@ class ProjectsController < ApplicationController
   def update
     @project.attributes = project_params
     @project.paper_trail_event = "#{current_user.email} updated #{project_params.keys.join(', ')}"
+
     if @project.save
       flash[:notice] = 'Project Updated'
       redirect_to @project
