@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @post = current_user.projects.new
+    @project = current_user.projects.new
   end
 
   def show; end
@@ -15,7 +15,6 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.new(project_params)
-    authorize @project
     if @project.save
       flash[:notice] = 'Project Created'
       redirect_to @project
