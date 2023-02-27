@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @project.comments.new(comment_params)
     if @comment.save
-      flash[:notice] = 'Comment created.'
+      flash[:success] = 'Comment created.'
     else
       flash[:alert] = 'Comment not created.'
     end
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy!
-    flash[:alert] = 'Comment Deleted.'
+    flash[:notice] = 'Comment Deleted.'
     redirect_to project_path(@project)
   end
 

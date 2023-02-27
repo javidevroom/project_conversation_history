@@ -19,11 +19,11 @@ class ProjectsController < ApplicationController
     @project.paper_trail_event = "#{current_user.email} created project"
 
     if @project.save
-      flash[:notice] = 'Project Created'
+      flash[:success] = 'Project Created'
       redirect_to @project
     else
       flash[:alert] = 'Could not create project'
-      render 'new'
+      redirect_to new_project_path
     end
   end
 
@@ -32,17 +32,17 @@ class ProjectsController < ApplicationController
     @project.paper_trail_event = "#{current_user.email} updated #{project_params.keys.join(', ')}"
 
     if @project.save
-      flash[:notice] = 'Project Updated'
+      flash[:success] = 'Updated'
       redirect_to @project
     else
-      flash[:alert] = 'Not Updated.'
-      render 'edit'
+      flash[:alert] = 'Could not update.'
+      redirect_to edit_project_path(@project)
     end
   end
 
   def destroy
     if @project.destroy
-      flash[:alert] = 'Successfully Deleted.'
+      flash[:notice] = 'Successfully Deleted.'
       redirect_to posts_path
     else
       flash[:alert] = 'Not Deleted.'
@@ -53,7 +53,7 @@ class ProjectsController < ApplicationController
   private
 
   def set_project
-    @project = Project.includes(:comments).find_by(id: params[:id])
+    @project = Project.find_by(id: params[:id])
 
     if @project.nil?
       flash[:alert] = 'Project not found'
