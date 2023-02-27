@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[show edit update destroy approve]
+  before_action :set_project, only: %i[show edit update destroy]
 
   def index
     @projects = Project.order(created_at: :desc)
@@ -49,10 +49,13 @@ class ProjectsController < ApplicationController
   def set_project
     @project = Project.includes(:comments).find_by(id: params[:id])
 
-    flash[:alert] = 'Project not found' unless @project
+    if @project.nil?
+      flash[:alert] = 'Project not found'
+      redirect_to root
+    end
   end
 
   def project_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project).permit(:name, :description, :status)
   end
 end
