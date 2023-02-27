@@ -1,4 +1,27 @@
-<div>
-  <h1 class="font-bold text-4xl">Projects#show</h1>
-  <p>Find me in app/views/projects/show.html.erb</p>
+<%
+  tabs = [
+    { title: 'Comments', partial: 'comments', active: true },
+    { title: 'History', partial: 'history', active: false }
+  ]
+  active_tab = 0
+%>
+
+<div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+  <div class="md:flex">
+    <div class="p-8">
+      <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold hover:text-blue-700 cursor-pointer" onclick="openModal()">
+        <%= @project.status.titleize %><i class="fas fa-pencil-alt pl-2"></i>
+      </div>
+      <h1 class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"><%= @project.name.titleize %></h1>
+      <p class="mt-2 text-gray-500"><%= @project.description %></p>
+      <div class="mt-4">
+        <%= link_to 'Edit', edit_project_path(@project), class: "text-blue-500 hover:text-blue-700 mr-4" %>
+        <%= link_to 'Back', projects_path, class: "text-gray-500 hover:text-gray-700" %>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: 'shared/tabs', locals: { tabs: tabs, active_tab: active_tab } %>
 </div>
+
+<%= render 'edit_status_modal' %>
