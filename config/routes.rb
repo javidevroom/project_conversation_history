@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+  get 'welcome/show'
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :projects do
+    resources :comments
+  end
+
+  resource :welcome, only: %i[show]
+
+  root 'welcome#show'
+
+  get '/user', to: 'projects#index', as: :user_root
 end
