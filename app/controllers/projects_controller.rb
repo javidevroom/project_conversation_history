@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
+  before_action :verfiy_signed_in
 
   def index
     @projects = Project.order(created_at: :desc)

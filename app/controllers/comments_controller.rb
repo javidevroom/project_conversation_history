@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_project, only: [:create]
   before_action :set_comment, only: [:destroy]
+  before_action :verfiy_signed_in
 
 
   def create
